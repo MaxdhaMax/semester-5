@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1630498069 source:c:\users\maxdha\documents\semester-5\grafkom\interaksi nama cpp\main.c
+
+1630665563 source:c:\users\maxdha\documents\semester-5\grafkom\interaksi nama cpp\ini.cpp
+	<GLFW/glfw3.h>
+	<iostream>
+	<list>
+	<iterator>
+	<stdlib.h>
+	<stdio.h>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1629947227 source:c:\users\maxdha\documents\semester-5\grafkom\interaksi_p3\main.cpp
+	<GLFW/glfw3.h>
+	<iostream>
+	<list>
+	<iterator>
+

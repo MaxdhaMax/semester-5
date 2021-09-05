@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1630418796 source:c:\users\maxdha\documents\semester-5\grafkom\tugas 2- bonus\main.c
+	<GLFW/glfw3.h>
+	<stdlib.h>
+	<stdio.h>
+

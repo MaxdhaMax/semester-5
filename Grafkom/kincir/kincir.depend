@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1632028400 source:c:\users\maxdha\documents\semester-5\grafkom\kincir\main.cpp
+	<GLFW/glfw3.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+

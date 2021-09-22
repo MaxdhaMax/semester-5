@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1631497864 source:c:\users\maxdha\documents\semester-5\grafkom\praktikum 5 wajib\main.cpp
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<cstdio>
+

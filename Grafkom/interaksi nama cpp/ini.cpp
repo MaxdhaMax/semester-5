@@ -693,7 +693,6 @@ float scale;
         glVertex2f( 1139.0f, 742.0f);
         glVertex2f(82.0f, 742.0f);
     glEnd();
-
 }
 /*
  * CALLBACKS FUNCTIONS

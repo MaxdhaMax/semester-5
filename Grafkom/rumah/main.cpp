@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <iterator>
+#include <math.h>
 
 using namespace std;
 
@@ -12,25 +13,50 @@ using namespace std;
 // Rectangle class
 class Rectangle{
 public:
-    double x=200, y=200;
+    double x=190, y=250;
     double prevY = 0;
-    int red = 255, green = 255, blue = 255;
-    int size = 20;
+    int red = 0, green = 0, blue = 0;
+    int size = 50;
+    int counter = 0;
 
-    void display()
-    {
-        //glBegin(GL_POLYGON);
-            //glColor3ub(red, green, blue);
-            //glVertex2f(-size + x,  size + y);
-            //glVertex2f( size + x,  size + y);
-            //glVertex2f( size + x, -size + y);
-            //glVertex2f(-size + x, -size + y);
-        //glEnd();
-    }
+    void display_bola()
+{
+    int theta;
+    glPushMatrix();
+    int gerak;
+    gerak = glfwGetTime()*-100;
+    glTranslatef(200,550,0);
+
+
+
+    glTranslatef(210.5, 220.5, 0);
+    glRotatef(gerak,0,0,0);
+    glTranslatef(-210.5, -220.5, 0);
+    glBegin(GL_POLYGON);
+    glColor3d(0.78,0.408,0.137);
+    for(int i=0;i<360;i++)
+        {
+            theta=i*3.142/180;
+            glVertex2f((x+size)+15*cos(theta),y+(size)+15*sin(theta));
+
+        }
+    glEnd();
+    glPopMatrix();
+}
+
+
+
     GLboolean isRectangleSelected(double xpos, double ypos){return GL_TRUE;}
     void doIfSelected(double xpos, double ypos){}
     void doIfKeyPressed(int key, int action){}
-    void doIfClicked(int button, int action, double xpos, double ypos){}
+    void doIfClicked(int button, int action, double xpos, double ypos)
+    {
+        if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
+                x = xpos;
+                y = ypos;
+        }
+    }
+
 };
 Rectangle rect;
 
@@ -118,7 +144,7 @@ Rectangle rect;
     glEnd();
 
     glBegin(GL_QUADS);
-        glVertex3d(474.0f, 539.5f, 0);
+        glVertex3d(476.5f, 541.5f, 0);
         glVertex3d(463.5f, 726.0f, 0);
         glVertex3d(576.5f, 791.5f, 0);
         glVertex3d(576.5f, 657.5f, 0);
@@ -199,11 +225,1163 @@ Rectangle rect;
          glVertex3d(801.0f, 695.0f, 0);
     glEnd();
 
+    glBegin(GL_TRIANGLES);
+         glVertex3d(380.0f, 701.0f, 0);
+         glVertex3d(197.0f, 797.0f, 0);
+         glVertex3d(81.0f, 727.0f, 0);
+    glEnd();
 
+    glBegin(GL_TRIANGLES);
+         glVertex3d(380.0f, 701.0f, 0);
+         glVertex3d(81.0f, 727.0f, 0);
+         glVertex3d(381,597,0);
+    glEnd();
 
+ glFlush();
 
-  glFlush();
  }
+
+
+void display_jendela()
+{
+    glPushMatrix();            // JENDELA KANAN BAWAH
+    glTranslatef(-45,20,0);
+    glColor3f( 0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // badan jendela
+        glVertex3d(732.0f, 618.0f, 0);
+        glVertex3d(732.0f, 678.0f, 0);
+        glVertex3d(694.0f, 700.5f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // bayangan
+        glVertex3d(694.0f, 700.75f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.0f, 695.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // bayangan 2
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+        glVertex3d(729.0f, 616.0f, 0);
+        glVertex3d(732.0f, 618.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);       // kaca
+        glVertex3d(698.0f, 643.5f, 0);
+        glVertex3d(710.5f, 636.5f, 0);
+        glVertex3d(710.5f, 650.5f, 0);
+        glVertex3d(698.0f, 658.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 2
+        glVertex3d(715.5f, 633.0f, 0);
+        glVertex3d(727.0f, 626.5f, 0);
+        glVertex3d(727.0f, 640.5f, 0);
+        glVertex3d(715.5f, 647.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 3
+        glVertex3d(698.0f, 663.0f, 0);
+        glVertex3d(710.5f, 656.5f, 0);
+        glVertex3d(710.5f, 667.0f, 0);
+        glVertex3d(698.0f, 673.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 4
+        glVertex3d(715.5f, 652.5f, 0);
+        glVertex3d(727.0f, 646.5f, 0);
+        glVertex3d(727.0f, 657.5f, 0);
+        glVertex3d(715.5f, 664.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 5
+        glVertex3d(698.0f, 680.0f, 0);
+        glVertex3d(710.0f, 673.5f, 0);
+        glVertex3d(710.0f, 685.0f, 0);
+        glVertex3d(698.0f, 692.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 6
+        glVertex3d(715.5f, 670.0f, 0);
+        glVertex3d(727.0f, 663.5f, 0);
+        glVertex3d(727.0f, 675.0f, 0);
+        glVertex3d(715.5f, 682.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();            // JENDELA KIRI BAWAH
+    glTranslatef(30,-20,0);
+    glColor3f( 0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // badan jendela
+        glVertex3d(732.0f, 618.0f, 0);
+        glVertex3d(732.0f, 678.0f, 0);
+        glVertex3d(694.0f, 700.5f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // bayangan
+        glVertex3d(694.0f, 700.75f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.0f, 695.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // bayangan 2
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+        glVertex3d(729.0f, 616.0f, 0);
+        glVertex3d(732.0f, 618.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);       // kaca
+        glVertex3d(698.0f, 643.5f, 0);
+        glVertex3d(710.5f, 636.5f, 0);
+        glVertex3d(710.5f, 650.5f, 0);
+        glVertex3d(698.0f, 658.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 2
+        glVertex3d(715.5f, 633.0f, 0);
+        glVertex3d(727.0f, 626.5f, 0);
+        glVertex3d(727.0f, 640.5f, 0);
+        glVertex3d(715.5f, 647.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 3
+        glVertex3d(698.0f, 663.0f, 0);
+        glVertex3d(710.5f, 656.5f, 0);
+        glVertex3d(710.5f, 667.0f, 0);
+        glVertex3d(698.0f, 673.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 4
+        glVertex3d(715.5f, 652.5f, 0);
+        glVertex3d(727.0f, 646.5f, 0);
+        glVertex3d(727.0f, 657.5f, 0);
+        glVertex3d(715.5f, 664.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 5
+        glVertex3d(698.0f, 680.0f, 0);
+        glVertex3d(710.0f, 673.5f, 0);
+        glVertex3d(710.0f, 685.0f, 0);
+        glVertex3d(698.0f, 692.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 6
+        glVertex3d(715.5f, 670.0f, 0);
+        glVertex3d(727.0f, 663.5f, 0);
+        glVertex3d(727.0f, 675.0f, 0);
+        glVertex3d(715.5f, 682.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();            // JENDELA ATAS  KANAN
+    glTranslatef(-80,-285,0);
+    glColor3f( 0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // badan jendela
+        glVertex3d(732.0f, 618.0f, 0);
+        glVertex3d(732.0f, 678.0f, 0);
+        glVertex3d(694.0f, 700.5f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // bayangan
+        glVertex3d(694.0f, 700.75f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.0f, 695.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // bayangan 2
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+        glVertex3d(729.0f, 616.0f, 0);
+        glVertex3d(732.0f, 618.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);       // kaca
+        glVertex3d(698.0f, 643.5f, 0);
+        glVertex3d(710.5f, 636.5f, 0);
+        glVertex3d(710.5f, 650.5f, 0);
+        glVertex3d(698.0f, 658.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 2
+        glVertex3d(715.5f, 633.0f, 0);
+        glVertex3d(727.0f, 626.5f, 0);
+        glVertex3d(727.0f, 640.5f, 0);
+        glVertex3d(715.5f, 647.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 3
+        glVertex3d(698.0f, 663.0f, 0);
+        glVertex3d(710.5f, 656.5f, 0);
+        glVertex3d(710.5f, 667.0f, 0);
+        glVertex3d(698.0f, 673.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 4
+        glVertex3d(715.5f, 652.5f, 0);
+        glVertex3d(727.0f, 646.5f, 0);
+        glVertex3d(727.0f, 657.5f, 0);
+        glVertex3d(715.5f, 664.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 5
+        glVertex3d(698.0f, 680.0f, 0);
+        glVertex3d(710.0f, 673.5f, 0);
+        glVertex3d(710.0f, 685.0f, 0);
+        glVertex3d(698.0f, 692.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 6
+        glVertex3d(715.5f, 670.0f, 0);
+        glVertex3d(727.0f, 663.5f, 0);
+        glVertex3d(727.0f, 675.0f, 0);
+        glVertex3d(715.5f, 682.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();            // JENDELA ATAS  KIRI
+    glTranslatef(-155,-240,0);
+    glColor3f( 0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // badan jendela
+        glVertex3d(732.0f, 618.0f, 0);
+        glVertex3d(732.0f, 678.0f, 0);
+        glVertex3d(694.0f, 700.5f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // bayangan
+        glVertex3d(694.0f, 700.5f, 0);
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.0f, 638.5f, 0);
+        glVertex3d(691.0f, 669.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // bayangan 2
+        glVertex3d(694.0f, 640.5f, 0);
+        glVertex3d(691.5f, 638.5f, 0);
+        glVertex3d(732.0f, 616.0f, 0);
+        glVertex3d(732.0f, 618.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);       // kaca
+        glVertex3d(698.0f, 643.5f, 0);
+        glVertex3d(710.5f, 636.5f, 0);
+        glVertex3d(710.5f, 650.5f, 0);
+        glVertex3d(698.0f, 658.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 2
+        glVertex3d(715.5f, 633.0f, 0);
+        glVertex3d(727.0f, 626.5f, 0);
+        glVertex3d(727.0f, 640.5f, 0);
+        glVertex3d(715.5f, 647.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 3
+        glVertex3d(698.0f, 663.0f, 0);
+        glVertex3d(710.5f, 656.5f, 0);
+        glVertex3d(710.5f, 667.0f, 0);
+        glVertex3d(698.0f, 673.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 4
+        glVertex3d(715.5f, 652.5f, 0);
+        glVertex3d(727.0f, 646.5f, 0);
+        glVertex3d(727.0f, 657.5f, 0);
+        glVertex3d(715.5f, 664.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 5
+        glVertex3d(698.0f, 680.0f, 0);
+        glVertex3d(710.0f, 673.5f, 0);
+        glVertex3d(710.0f, 685.0f, 0);
+        glVertex3d(698.0f, 692.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // kaca 6
+        glVertex3d(715.5f, 670.0f, 0);
+        glVertex3d(727.0f, 663.5f, 0);
+        glVertex3d(727.0f, 675.0f, 0);
+        glVertex3d(715.5f, 682.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(-35,25,0);
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // dasar jendala
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(487.0f, 498.5f, 0);
+        glVertex3d(449.0f, 476.0f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+        glVertex3d(452.0f, 414.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(487.0f, 498.75f, 0);
+        glVertex3d(490.0f, 497.0f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+        glVertex3d(452.0f, 414.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);        // kaca 1
+        glVertex3d(454.0f, 424.5f, 0);
+        glVertex3d(465.5f, 431.0f, 0);
+        glVertex3d(465.5f, 445.5f, 0);
+        glVertex3d(454.0f, 438.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 2
+        glVertex3d(470.5f, 434.5f, 0);
+        glVertex3d(483.0f, 441.5f, 0);
+        glVertex3d(483.0f, 456.0f, 0);
+        glVertex3d(470.5f, 448.5f, 0);
+    glEnd();
+
+     glBegin(GL_QUADS);        // kaca 3
+        glVertex3d(454.0f, 444.0f, 0);
+        glVertex3d(465.0f, 450.5f, 0);
+        glVertex3d(465.0f, 462.0f, 0);
+        glVertex3d(453.5f, 455.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 4
+        glVertex3d(471.0f, 454.5f, 0);
+        glVertex3d(482.5f, 461.0f, 0);
+        glVertex3d(482.5f, 472.5f, 0);
+        glVertex3d(471.0f, 468.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 5
+        glVertex3d(454.0f, 461.5f, 0);
+        glVertex3d(465.0f, 468.0f, 0);
+        glVertex3d(465.0f, 480.0f, 0);
+        glVertex3d(454.0f, 473.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 5
+        glVertex3d(471.0f, 471.5f, 0);
+        glVertex3d(482.5f, 478.0f, 0);
+        glVertex3d(482.5f, 490.0f, 0);
+        glVertex3d(471.0f, 483.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(65,225,0);
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);       // dasar jendala
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(487.0f, 498.5f, 0);
+        glVertex3d(449.0f, 476.0f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+        glVertex3d(452.0f, 414.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(487.0f, 498.75f, 0);
+        glVertex3d(490.0f, 497.0f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);       // BAYANGAN 1
+        glVertex3d(449.0f, 416.0f, 0);
+        glVertex3d(487.0f, 438.5f, 0);
+        glVertex3d(489.5f, 436.5f, 0);
+        glVertex3d(452.0f, 414.0f, 0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);        // kaca 1
+        glVertex3d(454.0f, 424.5f, 0);
+        glVertex3d(465.5f, 431.0f, 0);
+        glVertex3d(465.5f, 445.5f, 0);
+        glVertex3d(454.0f, 438.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 2
+        glVertex3d(470.5f, 434.5f, 0);
+        glVertex3d(483.0f, 441.5f, 0);
+        glVertex3d(483.0f, 456.0f, 0);
+        glVertex3d(470.5f, 448.5f, 0);
+    glEnd();
+
+     glBegin(GL_QUADS);        // kaca 3
+        glVertex3d(454.0f, 444.0f, 0);
+        glVertex3d(465.0f, 450.5f, 0);
+        glVertex3d(465.0f, 462.0f, 0);
+        glVertex3d(453.5f, 455.5f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 4
+        glVertex3d(471.0f, 454.5f, 0);
+        glVertex3d(482.5f, 461.0f, 0);
+        glVertex3d(482.5f, 472.5f, 0);
+        glVertex3d(471.0f, 468.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 5
+        glVertex3d(454.0f, 461.5f, 0);
+        glVertex3d(465.0f, 468.0f, 0);
+        glVertex3d(465.0f, 480.0f, 0);
+        glVertex3d(454.0f, 473.0f, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);        // kaca 5
+        glVertex3d(471.0f, 471.5f, 0);
+        glVertex3d(482.5f, 478.0f, 0);
+        glVertex3d(482.5f, 490.0f, 0);
+        glVertex3d(471.0f, 483.0f, 0);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-30,30,0);
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);            // BASE
+        glVertex3d(448.0f,510.0f,0);
+        glVertex3d(472.0f,524.5f,0);
+        glVertex3d(472.0f,664.5f,0);
+        glVertex3d(448.0f,649.0f,0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);            // bayangan
+        glVertex3d(448.0f,510.0f,0);
+        glVertex3d(472.0f,524.5f,0);
+        glVertex3d(475.0f,523.0f,0);
+        glVertex3d(450.0f,507.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // bayangan 2
+        glVertex3d(472.0f,524.5f,0);
+        glVertex3d(475.0f,523.0f,0);
+        glVertex3d(475.0f,660.5f,0);
+        glVertex3d(472.0f,664.5f,0);
+    glEnd();
+
+    glColor3f(0.337,0.392,0.443);
+    glBegin(GL_QUADS);            // kaca 1
+        glVertex3d(452.5f,518.0f,0);
+        glVertex3d(467.0f,527.5f,0);
+        glVertex3d(467.0f,544.5f,0);
+        glVertex3d(452.5f,535.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 2
+        glVertex3d(452.5f,540.5f,0);
+        glVertex3d(467.0f,550.5f,0);
+        glVertex3d(467.0f,562.0f,0);
+        glVertex3d(452.5f,552.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 3
+        glVertex3d(452.0f,558.5f,0);
+        glVertex3d(467.0f,567.5f,0);
+        glVertex3d(467.0f,579.5f,0);
+        glVertex3d(452.0f,570.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 4
+        glVertex3d(452.0f,576.5f,0);
+        glVertex3d(467.0f,584.5f,0);
+        glVertex3d(467.0f,597.5f,0);
+        glVertex3d(452.0f,588.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 5
+        glVertex3d(452.0f,593.5f,0);
+        glVertex3d(467.0f,602.5f,0);
+        glVertex3d(467.0f,616.5f,0);
+        glVertex3d(452.0f,607.0f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 6
+        glVertex3d(452.0f,613.0f,0);
+        glVertex3d(467.0f,621.5f,0);
+        glVertex3d(467.0f,634.5f,0);
+        glVertex3d(452.0f,625.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);            // kaca 7
+        glVertex3d(452.0f,630.0f,0);
+        glVertex3d(467.0f,639.69f,0);
+        glVertex3d(467.0f,656.0f,0);
+        glVertex3d(452.0f,646.5f,0);
+        glVertex3d(452.0f,646.5f,0);
+    glEnd();
+
+    glPopMatrix();
+}
+
+void display_pintuTangga()
+{
+    glPushMatrix();
+    glTranslatef(-35,20,0);
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);            // Base
+        glVertex3d(496.5f,706.0f,0);
+        glVertex3d(496.5f,596.5f,0);
+        glVertex3d(534.0f,618.5f,0);
+        glVertex3d(534.0f,730.5f,0);
+    glEnd();
+
+    glColor3f(0.937,0.953,0.965);
+    glBegin(GL_QUADS);            // Bayangan
+        glVertex3d(496.5f,596.0f,0);
+        glVertex3d(534.0f,618.5f,0);
+        glVertex3d(537.5f,617.0f,0);
+        glVertex3d(499.5f,593.5f,0);
+    glEnd();
+    glBegin(GL_QUADS);            // Bayangan 2
+        glVertex3d(534.0f,618.5f,0);
+        glVertex3d(537.5f,617.0f,0);
+        glVertex3d(537.0f,730.0f,0);
+        glVertex3d(534.0f,730.5f,0);
+    glEnd();
+
+    glPushMatrix();
+    glTranslatef(0,0,0);
+    glColor3f(1.0,1.0,1.0);
+    glBegin(GL_QUADS);            // tangga 1
+        glVertex3d(494.0f,705.0f,0);
+        glVertex3d(535.0f,731.0f,0);
+        glVertex3d(524.0f,740.5f,0);
+        glVertex3d(479.5f,713.0f,0);
+    glEnd();
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);            // tangga 1 bayangan
+        glVertex3d(524.0f,740.5f,0);
+        glVertex3d(479.5f,713.0f,0);
+        glVertex3d(479.5f,720.0f,0);
+        glVertex3d(524.0f,746.0f,0);
+    glEnd();
+    glColor3f(1.0,1.0,1.0);
+    glBegin(GL_QUADS);            // tangga 2
+        glVertex3d(479.5f,720.0f,0);
+        glVertex3d(524.0f,746.0f,0);
+        glVertex3d(512.5f,753.0f,0);
+        glVertex3d(467.0f,727.0f,0);
+    glEnd();
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);            // tangga 2 bayangan
+        glVertex3d(512.5f,753.0f,0);
+        glVertex3d(467.0f,727.0f,0);
+        glVertex3d(467.0f,734.5f,0);
+        glVertex3d(512.5f,761.0f,0);
+    glEnd();
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);            // tangga 3
+        glVertex3d(467.0f,734.5f,0);
+        glVertex3d(512.5f,761.0f,0);
+        glVertex3d(500.0f,769.0f,0);
+        glVertex3d(454.5f,742.0f,0);
+    glEnd();
+    glColor3f(0.741,0.765,0.78);
+    glBegin(GL_QUADS);            // tangga 3 bayangan
+        glVertex3d(500.0f,769.0f,0);
+        glVertex3d(454.5f,742.0f,0);
+        glVertex3d(454.5f,748.5f,0);
+        glVertex3d(500.0f,774.0f,0);
+    glEnd();
+
+    // pinggir tangga
+    glColor3f(0.671,0.718,0.718);
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,769.0f,0);
+        glVertex3d(500.0f,774.0f,0);
+        glVertex3d(539.5f,754.5f,0);
+        glVertex3d(539.5f,744.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(512.5f,753.0f,0);
+        glVertex3d(512.5f,761.0f,0);
+        glVertex3d(539.5f,744.0f,0);
+        glVertex3d(539.5f,738.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(524.0f,740.5f,0);
+        glVertex3d(524.0f,746.0f,0);
+        glVertex3d(539.5f,738.0f,0);
+         glVertex3d(535.0f,731.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(539.5f,738.0f,0);
+        glVertex3d(535.0f,731.0f,0);
+        glVertex3d(539.5f,731.5f,0);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();         // PINTU
+    glTranslatef(-35,18,0);
+    glColor3f(0.757,0.216,0.165);
+    glBegin(GL_QUADS);
+        glVertex3d(496.0f,597.0f,0);
+        glVertex3d(532.5f,619.0f,0);
+        glVertex3d(532.5f,730.5f,0);
+        glVertex3d(496.0f,707.5f,0);
+    glEnd();
+
+
+}
+
+void display_pohon_depan()
+{
+    glPushMatrix();
+    glTranslatef(-20,-180,0);
+    // POHON KECIL
+    // BATANG
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(647.5f,1129.0f,0);
+        glVertex3d(661.5f,1129.0f,0);
+        glVertex3d(661.5f,1165.5f,0);
+        glVertex3d(647.5f,1165.0f,0);
+    glEnd();
+
+    // DAUN
+
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(640.5f,1129.49f,0);
+        glVertex3d(632.0f,1130.0f,0);
+        glVertex3d(628.89f,1120.5f,0);
+        glVertex3d(628.5f,1118.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(669.5f,1125.99f,0);
+        glVertex3d(678.0f,1126.5f,0);
+        glVertex3d(680.11f,1117.0f,0);
+        glVertex3d(692.0f,1115.0f,0);
+        glVertex3d(692.0f,1107.0f,0);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+         glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(620.0f,1069.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(693.0f,1106.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(620.0f,1069.0f,0);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+        glVertex3d(653.5f,960.0f,0);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(70,-180,0);
+    //pohon besar
+    // Batang
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1135.0f,0);
+        glVertex3d(514.0f,1135.0f,0);
+        glVertex3d(514.0f,1171.0f,0);
+        glVertex3d(500.0f,1171.0f,0);
+    glEnd();
+
+    //Daun
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLES);
+        glVertex3d(500.0f,1146.5f,0);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+        glVertex3d(542.0f,1059.0f,0);
+        glVertex3d(545.0f,1120.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(515.5f,1121.5f,0);
+        glVertex3d(515.5f,1135.0f,0);
+        glVertex3d(500.0f,1135.0f,0);
+    glEnd();
+     glBegin(GL_TRIANGLES);
+        glVertex3d(512.5f,1121.5f,0);
+        glVertex3d(542.0f,1120.0f,0);
+        glVertex3d(513.5f,1146.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(466.0f,1089.5f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1089.5f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(472.5f,1049.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(472.5f,1049.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(491.5f,960.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(542.0f,1060.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(491.5f,960.0f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(511.0f,938.5f,0);
+        glVertex3d(499.5f,938.5f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(499.5f,938.5f,0);
+        glVertex3d(511.5f,939.0f,0);
+        glVertex3d(506.0f,930.0f,0);
+    glEnd();
+    glPopMatrix();
+}
+
+void display_pohon_samping()
+{
+    glPushMatrix();
+    glTranslatef(200,-380,0);
+    // POHON KECIL
+    // BATANG
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(647.5f,1129.0f,0);
+        glVertex3d(661.5f,1129.0f,0);
+        glVertex3d(661.5f,1165.5f,0);
+        glVertex3d(647.5f,1165.0f,0);
+    glEnd();
+
+    // DAUN
+
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(640.5f,1129.49f,0);
+        glVertex3d(632.0f,1130.0f,0);
+        glVertex3d(628.89f,1120.5f,0);
+        glVertex3d(628.5f,1118.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(669.5f,1125.99f,0);
+        glVertex3d(678.0f,1126.5f,0);
+        glVertex3d(680.11f,1117.0f,0);
+        glVertex3d(692.0f,1115.0f,0);
+        glVertex3d(692.0f,1107.0f,0);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+         glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(620.0f,1069.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(693.0f,1106.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(620.0f,1069.0f,0);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+        glVertex3d(653.5f,960.0f,0);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(300,-400,0);
+    //pohon besar
+    // Batang
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1135.0f,0);
+        glVertex3d(514.0f,1135.0f,0);
+        glVertex3d(514.0f,1171.0f,0);
+        glVertex3d(500.0f,1171.0f,0);
+    glEnd();
+
+    //Daun
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLES);
+        glVertex3d(500.0f,1146.5f,0);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+        glVertex3d(542.0f,1059.0f,0);
+        glVertex3d(545.0f,1120.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(515.5f,1121.5f,0);
+        glVertex3d(515.5f,1135.0f,0);
+        glVertex3d(500.0f,1135.0f,0);
+    glEnd();
+     glBegin(GL_TRIANGLES);
+        glVertex3d(512.5f,1121.5f,0);
+        glVertex3d(542.0f,1120.0f,0);
+        glVertex3d(513.5f,1146.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(466.0f,1089.5f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1089.5f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(472.5f,1049.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(472.5f,1049.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(491.5f,960.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(542.0f,1060.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(491.5f,960.0f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(511.0f,938.5f,0);
+        glVertex3d(499.5f,938.5f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(499.5f,938.5f,0);
+        glVertex3d(511.5f,939.0f,0);
+        glVertex3d(506.0f,930.0f,0);
+    glEnd();
+    glPopMatrix();
+}
+
+
+void display_pohon_belakang()
+{
+    glPushMatrix();
+    glTranslatef(-340,-460,0);
+    // POHON KECIL
+    // BATANG
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(647.5f,1129.0f,0);
+        glVertex3d(661.5f,1129.0f,0);
+        glVertex3d(661.5f,1165.5f,0);
+        glVertex3d(647.5f,1165.0f,0);
+    glEnd();
+
+    // DAUN
+
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(640.5f,1129.49f,0);
+        glVertex3d(632.0f,1130.0f,0);
+        glVertex3d(628.89f,1120.5f,0);
+        glVertex3d(628.5f,1118.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(669.5f,1125.99f,0);
+        glVertex3d(678.0f,1126.5f,0);
+        glVertex3d(680.11f,1117.0f,0);
+        glVertex3d(692.0f,1115.0f,0);
+        glVertex3d(692.0f,1107.0f,0);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(647.5f,1135.0f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(617.5f,1109.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(688.5f,1060.5f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+         glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(616.5f,1086.0f,0);
+        glVertex3d(620.0f,1069.0f,0);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(662.5f,1132.5f,0);
+        glVertex3d(693.0f,1106.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(688.5f,1060.5f,0);
+        glVertex3d(620.0f,1069.0f,0);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(627.5f,1032.0f,0);
+        glVertex3d(683.0f,1037.5f,0);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex3d(676.5f,1013.0f,0);
+        glVertex3d(634.0f,1008.5f,0);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+    glEnd();
+
+     glBegin(GL_TRIANGLES);
+        glVertex3d(644.0f,975.0f,0);
+        glVertex3d(665.5f,979.0f,0);
+        glVertex3d(653.5f,960.0f,0);
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-250,-440,0);
+    //pohon besar
+    // Batang
+    glColor3f(0.486,0.298,0.078);
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1135.0f,0);
+        glVertex3d(514.0f,1135.0f,0);
+        glVertex3d(514.0f,1171.0f,0);
+        glVertex3d(500.0f,1171.0f,0);
+    glEnd();
+
+    //Daun
+    glColor3f(0.122,0.545,0.216);
+    glBegin(GL_TRIANGLES);
+        glVertex3d(500.0f,1146.5f,0);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(500.0f,1059.0f,0);
+        glVertex3d(542.0f,1059.0f,0);
+        glVertex3d(545.0f,1120.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(500.0f,1121.5f,0);
+        glVertex3d(515.5f,1121.5f,0);
+        glVertex3d(515.5f,1135.0f,0);
+        glVertex3d(500.0f,1135.0f,0);
+    glEnd();
+     glBegin(GL_TRIANGLES);
+        glVertex3d(512.5f,1121.5f,0);
+        glVertex3d(542.0f,1120.0f,0);
+        glVertex3d(513.5f,1146.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(469.0f,1119.5f,0);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1106.5f,0);
+        glVertex3d(480.5f,1098.0f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(466.0f,1089.5f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(466.0f,1089.5f,0);
+        glVertex3d(489.0f,1082.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(472.5f,1049.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(472.5f,1049.0f,0);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(491.5f,960.0f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(501.5f,1059.5f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(542.0f,1060.0f,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glVertex3d(491.5f,960.0f,0);
+        glVertex3d(520.0f,967.5f,0);
+        glVertex3d(511.0f,938.5f,0);
+        glVertex3d(499.5f,938.5f,0);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+        glVertex3d(499.5f,938.5f,0);
+        glVertex3d(511.5f,939.0f,0);
+        glVertex3d(506.0f,930.0f,0);
+    glEnd();
+    glPopMatrix();
+}
+
+
+
+void display_scale()
+{
+float scale;
+    glTranslatef(0, 1150, 0);
+    glScalef(glfwGetTime()*0.05,0.05,1);
+    glBegin(GL_POLYGON);
+        glColor3f(0.98,0.886,0.165);
+        glVertex2f(82.0f ,  41.0f);
+        glVertex2f( 1139.0f,  41.0f);
+        glVertex2f( 1139.0f, 742.0f);
+        glVertex2f(82.0f, 742.0f);
+    glEnd();
+}
 
 
 
@@ -219,7 +1397,13 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos){}
 
 // Callback untuk merespons penekanan tombol pada mouse
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){}
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    double xpos, ypos;
+    glfwGetCursorPos(window, &xpos, &ypos);
+    rect.doIfClicked(button, action, xpos, ypos);
+
+}
 
 /*
  * MAIN FUNCTION
@@ -261,8 +1445,18 @@ int main(void) {
 
 
         /* Object Drawing*/
+
         display();
-        rect.display();
+        display_jendela();
+        display_pintuTangga();
+        display_pohon_depan();
+        display_pohon_samping();
+        display_pohon_belakang();
+
+        rect.display_bola();
+
+
+        display_scale();
 
 
         /* Handling Frame Changes */

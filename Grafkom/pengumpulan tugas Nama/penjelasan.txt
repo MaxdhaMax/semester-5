@@ -1,0 +1,18 @@
+Maxdha Maxiwinata
+G64190105
+
+Rumah terbuat dari
+    base rumah(tembok dengan genteng) nya dibuat dengan quads, triangles, polygon
+    jendela dibuat dengan quads
+    tangga dan pintu dibuat dengan quads dan triangles
+    pohon dibuat dengan quads, trianglefan, triangle
+    bola dibuat dengan polygon membentuk bola
+    loading bar dibuat dari polygon
+
+transformasi
+    translate : memindahkan pohon ke tempat yang di inginkan, memindahkan jendela ke tempat yang di inginkan
+    rotate : membuat bola memantul, rencana nya gituu kak heheheeh
+    scale : membuat loading bar
+
+interaksi 
+    memindahkan bolanya jadi seolah olah kita bisa maen bolannya, pindah dengan on click

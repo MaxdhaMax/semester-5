@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1631970537 source:c:\users\maxdha\documents\semester-5\grafkom\rumah\main.cpp
+1632714473 source:c:\users\maxdha\documents\semester-5\grafkom\rumah\main.cpp
 	<GLFW/glfw3.h>
 	<iostream>
 	<list>
 	<iterator>
+	<math.h>
 
